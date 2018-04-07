@@ -11,6 +11,7 @@ import { ShoppingListService } from './shopping-list.service';
 import { AboutComponent } from './about/about.component';
 import { RouterModule } from '@angular/router';
 import { APP_ROUTES } from './app-routing.module';
+import { AuthService } from './auth.service';
 
 
 @NgModule({
@@ -26,7 +27,10 @@ import { APP_ROUTES } from './app-routing.module';
     FormsModule,
     RouterModule.forRoot(APP_ROUTES)
   ],
-  providers: [ShoppingListService],
+  providers: [
+    ShoppingListService, 
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
