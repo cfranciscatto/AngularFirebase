@@ -7,14 +7,11 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 @Injectable()
 export class ShoppingListService {
 
-  private listItems: Array<any>;
-
   public listItemFireBase: Observable<any[]>;
   private listItemsRef: AngularFireList<any>;
   
   constructor( private httpClient: HttpClient, private db: AngularFireDatabase) 
   {
-    this.listItems = [];
     this.listItemsRef = this.db.list('items');
 
     // "listener" para pegar alteracoes no banco
