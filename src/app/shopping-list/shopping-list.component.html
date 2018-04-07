@@ -1,0 +1,14 @@
+<form>
+    <div class="input-group mt-3">
+      <input type="text" class="form-control"placeholder="Item name">
+      <button type="submit" class="btn btn-primary">Add</button>
+    </div>
+  </form>
+  <ul class="list-group">
+    <app-shopping-list-item
+      *ngFor="let item of listItems"
+      [shoppingItem]="item">
+    </app-shopping-list-item>
+  </ul>
+
+
