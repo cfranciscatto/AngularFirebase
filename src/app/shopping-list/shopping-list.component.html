@@ -1,12 +1,18 @@
 <form>
     <div class="input-group mt-3">
-      <input type="text" 
-             name="myInput"
+      <input type="text"
+             name="productDescription"
              class="form-control"
-             placeholder="Item name" [(ngModel)]="itemToAdd">
+             placeholder="Item name" [(ngModel)]="itemDescription">
+      <h4> - </h4>
+      <input type="text" 
+             name="productPrice"
+             class="form-control"
+             placeholder="Item price" [(ngModel)]="itemPrice">
+      <h4> - </h4>
       <button type="submit" 
               class="btn btn-primary"
-              (click)="addObjectToList()">Add</button>
+              (click)="addItem()">Add</button>
     </div>
   </form>
   <ul class="list-group">

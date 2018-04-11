@@ -10,7 +10,8 @@ import { Observable } from 'rxjs/Observable';
 export class ShoppingListComponent implements OnInit {
   
   private listItems: Observable<Array<any>>;
-  private itemToAdd: string = '';
+  private itemDescription: string = '';
+  private itemPrice: number;
 
   constructor(private myShoppingListService: ShoppingListService)
   { 
@@ -21,18 +22,20 @@ export class ShoppingListComponent implements OnInit {
     this.listItems = this.myShoppingListService.listItemFireBase;
   }
 
-  private addObjectToList()
+  private addItem()
   {
     // create
     let newItem = 
       {
-        name: this.itemToAdd,
+        name: this.itemDescription,
+        price: this.itemPrice,
         disabled: false
       };
     // add
     this.myShoppingListService.add(newItem);
     // clear input
-    this.itemToAdd = '';
+    this.itemDescription = '';
+    this.itemPrice = 0;
   }
 
 }

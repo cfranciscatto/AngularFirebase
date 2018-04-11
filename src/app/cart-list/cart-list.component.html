@@ -1,0 +1,14 @@
+<form>
+  <div class="input-group mt-3">
+    <button type="submit" 
+            class="btn btn-primary"
+            (click)="clearCart()">Clear Cart</button>
+  </div>
+</form>
+<ul class="list-group">
+  <app-cart-list-item
+    *ngFor="let item of cartItems | async"
+    [shoppingItem]="item">
+  </app-cart-list-item>
+</ul>
+ 
