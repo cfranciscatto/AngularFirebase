@@ -53,6 +53,7 @@ export class ShoppingListService {
   {
     this.listItemsRef.remove();
   }
+  
   public edit(item)
   {
     let key = item.key;
@@ -60,4 +61,5 @@ export class ShoppingListService {
     
     this.listItemsRef.update(key, item);
   }
+
 }

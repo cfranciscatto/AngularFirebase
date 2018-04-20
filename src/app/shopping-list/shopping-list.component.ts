@@ -13,13 +13,13 @@ export class ShoppingListComponent implements OnInit {
   private itemDescription: string = '';
   private itemPrice: number;
 
-  constructor(private myShoppingListService: ShoppingListService)
+  constructor(private shoppingListService: ShoppingListService)
   { 
   }
 
   ngOnInit() 
   {
-    this.listItems = this.myShoppingListService.listItemFireBase;
+    this.listItems = this.shoppingListService.listItemFireBase;
   }
 
   private addItem()
@@ -32,7 +32,7 @@ export class ShoppingListComponent implements OnInit {
         disabled: false
       };
     // add
-    this.myShoppingListService.add(newItem);
+    this.shoppingListService.add(newItem);
     // clear input
     this.itemDescription = '';
     this.itemPrice = 0;

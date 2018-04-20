@@ -7,7 +7,7 @@ export const environment = {
   production: false,
   firebase: {
     // apiKey - permite acesso a sua conta no firebase - cuidado para nao commitar em repositorio publico
-    apiKey: "",
+    apiKey: "AIzaSyBqzpvg5UUqR2NAR4o4fyWTy0YZXBQBr0I",
     authDomain: "caf-shopping-list.firebaseapp.com",
     databaseURL: "https://caf-shopping-list.firebaseio.com",
     projectId: "caf-shopping-list",

@@ -12,7 +12,7 @@ export class CartListService {
   
   constructor( private httpClient: HttpClient, private db: AngularFireDatabase) 
   {
-    this.cartItemsRef = this.db.list('items');
+    this.cartItemsRef = this.db.list('cartItems');
 
     // "listener" para pegar alteracoes no banco
     this.cartItemFireBase = this.cartItemsRef.snapshotChanges()
@@ -26,6 +26,7 @@ export class CartListService {
                     return (
                     { 
                       key: c.payload.key,
+                      item: c.payload.val()['item'],
                       name: c.payload.val()['name'],
                       price: c.payload.val()['price'],
                       qtty: c.payload.val()['qtty']
@@ -53,12 +54,21 @@ export class CartListService {
   {
     this.cartItemsRef.remove();
   }
-  
-  public edit(item)
+
+  public increase(item, qtty)
   {
     let key = item.key;
     delete item.key;
+    item.qtty = item.qtty + qtty;
     
     this.cartItemsRef.update(key, item);
+  }
+
+  public decrease(item, qtty)
+  {
+    if (item.qtty > 1)
+    {
+      this.increase(item, -1);
+    }
   }
 }

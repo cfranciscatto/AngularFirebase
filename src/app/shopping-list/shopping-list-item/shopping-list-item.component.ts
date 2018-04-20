@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ShoppingListService } from '../../shopping-list.service';
+import { CartListService } from '../../cart-list.service';
 
 @Component({
   selector: 'app-shopping-list-item',
@@ -12,8 +13,11 @@ export class ShoppingListItemComponent implements OnInit {
   public deleted: boolean = false;
 
   constructor(
-    private myShoppingListService: ShoppingListService
-  ) { }
+      private shoppingListService: ShoppingListService, 
+      private cardListService: CartListService)
+  {
+
+  }
 
   ngOnInit() {
     console.log(this.listItem);
@@ -21,10 +25,10 @@ export class ShoppingListItemComponent implements OnInit {
 
   public removeItem()
   {
-    this.myShoppingListService.remove(this.listItem);
+    this.shoppingListService.remove(this.listItem);
   }
 
-  public crossItem()
+  public checkInItem()
   {
     // criar um objeto temporario com alterando a tag que se deseja
     let itemEdited = 
@@ -33,9 +37,32 @@ export class ShoppingListItemComponent implements OnInit {
       disabled: true
     }
 
+    let itemCart =
+    {
+      item: this.listItem.key,
+      name: this.listItem.name,
+      price: this.listItem.price,
+      qtty: 1
+    }
+
     // posso enviar o objeto ou as tags separadamente
     // so setar no objeto da classe apos o retorno ok do server
-    this.myShoppingListService.edit(itemEdited);
+    this.shoppingListService.edit(itemEdited);
+    this.cardListService.add(itemCart);
+  }
+
+  public checkOutItem()
+  {
+    // criar um objeto temporario com alterando a tag que se deseja
+    let itemEdited = 
+    {
+      key: this.listItem.key,
+      disabled: false
+    }
+
+    // posso enviar o objeto ou as tags separadamente
+    // so setar no objeto da classe apos o retorno ok do server
+    this.shoppingListService.edit(itemEdited);
   }
 
 }
